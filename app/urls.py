@@ -5,3 +5,5 @@ from . import views
 
 urlpatterns=[
        url(r'^$',views.home,name='Home'),
+       url(r'^new_neighbourhood',views.new_neighbourhood,name='new_neighbourhood'),
+       url(r'^detail/(?P<neighbourhood_id>\d+)/$' , views.neighbourhood_details, name='detail' ),
