@@ -3,26 +3,43 @@
 {% load bootstrap3 %} {% load staticfiles%}
 <h1 style="text-align:center;color:white;">Welcome Neighbourwatch</h1>
 <div class="container">
-<div class="row">
-  {%for hood in neighbourhood%}
-  <div style="margin-top:20px;" class='col-md-4 '>
-  <div class="w3-container card">
+    <div class="row">
+        {%for hood in neighbourhood%}
+        <div style="margin-top:20px;" class='col-md-4 '>
+            <div class="w3-container card">
 
-    <div class="w3-card-4" style="width:50%;">
-      <header class="w3-container edge">
-        <h1>{{hood.name}} Neighbourhood</h1>
-      </header>
+                <div class="w3-card-4" style="width:50%;">
+                    <header class="w3-container edge">
+                        <h1>{{hood.name}} Neighbourhood</h1>
+                    </header>
 
-      <div class="w3-container content">
-        <p>{{hood.name}}</p>
-        <p>location: {{hood.location}}</p>
-        <p>admin: {{hood.admin}}</p>
-        <a href="{%url 'detail' hood.id %}">details</a>
-      </div>
+                    <div class="w3-container content">
+                        <p>{{hood.name}}</p>
+                        <p>location: {{hood.location}}</p>
+                        <p>admin: {{hood.admin}}</p>
+                        <a href="{%url 'detail' hood.id %}">details</a>
+                    </div>
 
+                </div>
+            </div>
+        </div>
+        {%endfor%}
     </div>
-  </div>
-   </div>
-{%endfor%}
 </div>
-</div>
+
+
+<style>
+    .content {
+        background-color: white;
+    }
+
+    .card {
+        width: 800px;
+    }
+
+    .edge {
+        background-color: #4F0505;
+        color: white;
+    }
+</style>
+{%endblock%}
