@@ -29,6 +29,10 @@ def  neighbourhood_details(request,neighbourhood_id):
     neighbourhood=Neighbourhood.objects.get(pk=neighbourhood_id)
     return render(request,'details.html',{'neighbourhood':neighbourhood,'businesses':businesses,'posts':posts,})
 
+@login_required(login_url="/accounts/login/")
 
-
+def profile(request):
+    profiles=Profile.objects.filter(user=request.user.id)
+    neighbourhood=Neighbourhood.objects.filter(admin=request.user.id)
+    return render (request,'profile.html',{'neighbourhood':neighbourhood,'profiles':profiles,})
 @login_required(login_url="/accounts/login/")
