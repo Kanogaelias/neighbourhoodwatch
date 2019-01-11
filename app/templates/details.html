@@ -2,60 +2,77 @@
 {%block content%}
 {% load bootstrap3 %} {% load staticfiles%}
 <div class="container">
-<div class="row">
-<div style="margin-top:20px;" class='col-md-5'>
-<div style="width:100%;" class="w3-container card">
+    <div class="row">
+        <div style="margin-top:20px;" class='col-md-5'>
+            <div style="width:100%;" class="w3-container card">
 
-  <div class="w3-card-4" style="width:50%;">
-    <header class="w3-container edge">
-      <h1>{{neighbourhood.name}}</h1>
-    </header>
+                <div class="w3-card-4" style="width:50%;">
+                    <header class="w3-container edge">
+                        <h1>{{neighbourhood.name}}</h1>
+                    </header>
 
-    <div class="w3-container content">
-      <p>name:{{neighbourhood.name}}</p>
-      <p>location: {{neighbourhood.location}}</p>
-      <p>admin: {{neighbourhood.admin}}</p>
+                    <div class="w3-container content">
+                        <p>name:{{neighbourhood.name}}</p>
+                        <p>location: {{neighbourhood.location}}</p>
+                        <p>admin: {{neighbourhood.admin}}</p>
 
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div style="color:white;margin-top:20px;" class="col-md-3">
+            <p>click <a class="img-thumbnail" href="{%url 'new_business' pk=neighbourhood.id %}">
+                    here
+                </a> to post about your business</p>
+            <!-- data-image-id="{{hood.id}}" data-toggle="modal" data-target="#{{hood.id}}" -->
+            {%if businesses%}
+            {%for business in businesses%}
+
+            <p>name: {{business.name}}</p>
+            <p>description: {{business.description}}</p>
+            <p>contact: {{business.email}}</p>
+            {%endfor%}
+            {%else%}
+            <p>no business at the moment</p>
+            {%endif%}
+        </div>
+
+
+
+        <div style="color:white;margin-top:20px;" class="col-md-3">
+            <p>Wanna share something with your neighbour? click <a class="img-thumbnail" href="{%url 'new_post' pk=neighbourhood.id %}">
+                    here
+                </a> </p>
+            {%if posts%}
+            {%for post in posts%}
+            <p><strong>{{post.user.username}}: </strong> {{post.post}}</p>
+            {%endfor%}
+            {%else%}
+            <p>no business at the moment</p>
+            {%endif%}
+        </div>
     </div>
-
-
-  </div>
 </div>
- </div>
 
+<style>
+    .content {
+        background-color: white;
+    }
 
+    .card {
+        width: 100%;
+    }
 
+    .edge {
+        background-color: #4F0505;
+        color: white;
+    }
+</style>
 
- <div style="color:white;margin-top:20px;" class="col-md-3">
- <p>click <a class="img-thumbnail" href="{%url 'new_business' pk=neighbourhood.id %}" >
-        here
-      </a> to post about your business</p>
-      <!-- data-image-id="{{hood.id}}" data-toggle="modal" data-target="#{{hood.id}}" -->
-      {%if businesses%}
-      {%for business in businesses%}
-
-      <p>name: {{business.name}}</p>
-      <p>description: {{business.description}}</p>
-      <p>contact: {{business.email}}</p>
-      {%endfor%}
-      {%else%}
-      <p>no business at the moment</p>
-      {%endif%}
-      </div>
-
-
-
-<div style="color:white;margin-top:20px;" class="col-md-3">
-  <p>Wanna share something with your neighbour? click  <a class="img-thumbnail" href="{%url 'new_post' pk=neighbourhood.id %}" >
-         here
-       </a> </p>
-       {%if posts%}
-       {%for post in posts%}
-       <p><strong>{{post.user.username}}: </strong> {{post.post}}</p>
-       {%endfor%}
-       {%else%}
-       <p>no business at the moment</p>
-       {%endif%}
-</div>
- </div>
- </div>
+{%endblock%}
