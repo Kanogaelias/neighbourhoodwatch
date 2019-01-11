@@ -3,54 +3,112 @@
 {%block content%}
 {{block.super}}
 <div style="padding-top: 100px;" class="container">
-<div class="row">
-  {%if profiles%}
-  {%for profile in profiles%}
-  <h2 style="text-align:center">Profile</h2>
+    <div class="row">
+        {%if profiles%}
+        {%for profile in profiles%}
+        <h2 style="text-align:center">Profile</h2>
 
-<div class="card" style="color:white;background-color:#4F0505">
-  <img src="{{profile.profile_pic.url}}" alt="profile picture" style="border-radius:70%;height:200px;width:200px;">
-  <h1>{{profile.user.username}}</h1>
-  <p class="title">{{profile.bio}}</p>
-
-
- <p><button>Follow</button></p>
-</div>
-  
-  {%endfor%}
-  {%else%}
-  <p style="color:white;text-align:center;">heyy {{request.user}} is this your first time on Neighbourwatch? navigate <a style="color:black;" href="{%url 'new-profile'%}">here</a> to create a profile</p>
-
-  {%endif%}
+        <div class="card" style="color:white;background-color:#4F0505">
+            <img src="{{profile.profile_pic.url}}" alt="profile picture" style="border-radius:70%;height:200px;width:200px;">
+            <h1>{{profile.user.username}}</h1>
+            <p class="title">{{profile.bio}}</p>
 
 
-  {%if neighbourhood%}
-  {%for hood in neighbourhood%}
-  <div style="margin-top:20px;" class='col-md-4 '>
-  <div class="w3-container card1">
+            <p><button>Follow</button></p>
+        </div>
 
-    <div class="w3-card-4" style="width:50%;">
-      <header class="w3-container edge">
-        <h1>{{hood.name}} Neighbourhood</h1>
-      </header>
+        {%endfor%}
+        {%else%}
+        <p style="color:white;text-align:center;">heyy {{request.user}} is this your first time on Neighbourwatch?
+            navigate <a style="color:black;" href="{%url 'new-profile'%}">here</a> to create a profile</p>
 
-      <div class="w3-container content">
-        <p>{{hood.name}}</p>
-        <p>location: {{hood.location}}</p>
-        <p>admin: {{hood.admin}}</p>
-        <a href="{%url 'detail' hood.id %}">details</a>
-      </div>
+        {%endif%}
+
+
+        {%if neighbourhood%}
+        {%for hood in neighbourhood%}
+        <div style="margin-top:20px;" class='col-md-4 '>
+            <div class="w3-container card1">
+
+                <div class="w3-card-4" style="width:50%;">
+                    <header class="w3-container edge">
+                        <h1>{{hood.name}} Neighbourhood</h1>
+                    </header>
+
+                    <div class="w3-container content">
+                        <p>{{hood.name}}</p>
+                        <p>location: {{hood.location}}</p>
+                        <p>admin: {{hood.admin}}</p>
+                        <a href="{%url 'detail' hood.id %}">details</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        {%endfor%}
+
+
+        {%else%}
+        <h2 style="color:white;">you seem to have no neighbourhoods</h2>
+        <button class="btn btn-primary"><a style="color:white;" href="{%url 'new_neighbourhood'%}">add a new
+                neighbourhood</a></button>
+        {%endif%}
 
     </div>
-  </div>
-   </div>
-{%endfor%}
-
-
-{%else%}
-<h2 style="color:white;">you seem to have no neighbourhoods</h2>
-<button  class="btn btn-primary"><a style="color:white;"href="{%url 'new_neighbourhood'%}">add a new neighbourhood</a></button>
-{%endif%}
-
 </div>
-</div>
+
+<style>
+    .content {
+        background-color: white;
+    }
+
+    .card1 {
+        width: 800px;
+    }
+
+    .edge {
+        background-color: #4F0505;
+        color: white;
+    }
+
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        max-width: 300px;
+        margin: auto;
+        text-align: center;
+        font-family: arial;
+    }
+
+    .title {
+        color: grey;
+        font-size: 18px;
+    }
+
+    button {
+        border: none;
+        outline: 0;
+        display: inline-block;
+        padding: 8px;
+        color: white;
+        background-color: #000;
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+        font-size: 18px;
+    }
+
+    a {
+        text-decoration: none;
+        font-size: 22px;
+        color: black;
+    }
+
+    button:hover,
+    a:hover {
+        opacity: 0.7;
+    }
+</style>
+
+
+<!-- </style> -->
+{%endblock%}
