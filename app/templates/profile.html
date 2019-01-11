@@ -1,0 +1,56 @@
+{%extends 'base.html'%}
+{% load bootstrap3 %}
+{%block content%}
+{{block.super}}
+<div style="padding-top: 100px;" class="container">
+<div class="row">
+  {%if profiles%}
+  {%for profile in profiles%}
+  <h2 style="text-align:center">Profile</h2>
+
+<div class="card" style="color:white;background-color:#4F0505">
+  <img src="{{profile.profile_pic.url}}" alt="profile picture" style="border-radius:70%;height:200px;width:200px;">
+  <h1>{{profile.user.username}}</h1>
+  <p class="title">{{profile.bio}}</p>
+
+
+ <p><button>Follow</button></p>
+</div>
+  
+  {%endfor%}
+  {%else%}
+  <p style="color:white;text-align:center;">heyy {{request.user}} is this your first time on Neighbourwatch? navigate <a style="color:black;" href="{%url 'new-profile'%}">here</a> to create a profile</p>
+
+  {%endif%}
+
+
+  {%if neighbourhood%}
+  {%for hood in neighbourhood%}
+  <div style="margin-top:20px;" class='col-md-4 '>
+  <div class="w3-container card1">
+
+    <div class="w3-card-4" style="width:50%;">
+      <header class="w3-container edge">
+        <h1>{{hood.name}} Neighbourhood</h1>
+      </header>
+
+      <div class="w3-container content">
+        <p>{{hood.name}}</p>
+        <p>location: {{hood.location}}</p>
+        <p>admin: {{hood.admin}}</p>
+        <a href="{%url 'detail' hood.id %}">details</a>
+      </div>
+
+    </div>
+  </div>
+   </div>
+{%endfor%}
+
+
+{%else%}
+<h2 style="color:white;">you seem to have no neighbourhoods</h2>
+<button  class="btn btn-primary"><a style="color:white;"href="{%url 'new_neighbourhood'%}">add a new neighbourhood</a></button>
+{%endif%}
+
+</div>
+</div>
