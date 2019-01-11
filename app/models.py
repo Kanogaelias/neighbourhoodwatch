@@ -68,3 +68,8 @@ class Business(models.Model):
         business.name=Value
         business.save()
         return business
+
+ class Post(models.Model):
+        post=models.CharField(max_length=200)
+        user=models.ForeignKey(User,on_delete=models.CASCADE)
+        neighborhood=models.ForeignKey(Neighbourhood,on_delete=models.CASCADE)
