@@ -2,40 +2,59 @@
 {% block content %}
 <div class="container">
 
-  <div class="row">
-    {% if neighborhood%}
-      <h2>Found {{ neighborhood|length }} of searched term {{message}}</h2>
-    {% else %}
-      <h2> Found 0 neighbourhoods for the search term {{message}}</h2>
-    {% endif %}
+    <div class="row">
+        {% if neighborhood%}
+        <h2>Found {{ neighborhood|length }} of searched term {{message}}</h2>
+        {% else %}
+        <h2> Found 0 neighbourhoods for the search term {{message}}</h2>
+        {% endif %}
 
-  </div>
-
-  <div class="row">
-
-  {% if neighborhood %}
-  <div class="container">
-  <div class="row">
-  {%for hood in neighborhood%}
-
-  <div style="margin-top:20px;" class='col-md-12'>
-  <div style="width:100%;" class="w3-container card">
-
-    <div class="w3-card-4" style="width:50%;">
-      <header class="w3-container edge">
-        <h1>{{hood.name}} Neighbourhood</h1>
-      </header>
-
-      <div class="w3-container content">
-        <p>{{hood.name}}</p>
-        <p>location: {{hood.location}}</p>
-        <p>admin: {{hood.admin}}</p>
-        <a href="{%url 'detail' hood.id %}">details</a>
-      </div>
     </div>
-  </div>
-   </div>
-   {% endfor %}
- {% endif %}
-   </div>
-   </div>
+
+    <div class="row">
+
+        {% if neighborhood %}
+        <div class="container">
+            <div class="row">
+                {%for hood in neighborhood%}
+
+                <div style="margin-top:20px;" class='col-md-12'>
+                    <div style="width:100%;" class="w3-container card">
+
+                        <div class="w3-card-4" style="width:50%;">
+                            <header class="w3-container edge">
+                                <h1>{{hood.name}} Neighbourhood</h1>
+                            </header>
+
+                            <div class="w3-container content">
+                                <p>{{hood.name}}</p>
+                                <p>location: {{hood.location}}</p>
+                                <p>admin: {{hood.admin}}</p>
+                                <a href="{%url 'detail' hood.id %}">details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+
+        <style>
+            .content {
+                background-color: white;
+            }
+
+            .card {
+                width: 100%;
+            }
+
+            .edge {
+                background-color: #4F0505;
+                color: white;
+            }
+        </style>
+
+
+
+        {% endblock %}
