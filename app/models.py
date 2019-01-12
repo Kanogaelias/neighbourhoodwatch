@@ -34,16 +34,18 @@ class Neighbourhood(models.Model):
         neighborhood=cls.objects.filter(name__icontains=search_term)
         return neighborhood
 
+
 class Profile(models.Model):
     profile_pic=models.ImageField(upload_to='profile_photos/')
     bio=models.CharField(max_length=300)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-    
+    # neighborhood=models.ForeignKey(Neighbourhood,on_delete=models.CASCADE)
     def create_profile(self):
         self.save()
 
     def delete_profile(self):
         self.delete()
+
 
 class Business(models.Model):
     name=models.CharField(max_length=60)
@@ -69,7 +71,7 @@ class Business(models.Model):
         business.save()
         return business
 
- class Post(models.Model):
+class Post(models.Model):
         post=models.CharField(max_length=200)
         user=models.ForeignKey(User,on_delete=models.CASCADE)
         neighborhood=models.ForeignKey(Neighbourhood,on_delete=models.CASCADE)
